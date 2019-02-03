@@ -10,7 +10,7 @@ import {Evenement} from "../models/event";
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
+export class HomePage {
 
   /**
    * ATTRIBUTS
@@ -34,9 +34,6 @@ export class HomePage implements OnInit{
    * METHODES
    */
 
-  ngOnInit(): void {
-  }
-
   addEvent(){
     this.modal();
   }
@@ -57,6 +54,7 @@ export class HomePage implements OnInit{
   }
 
   async modal(){
+    debugger
     let modal = await this.modalCtrl.create({
         component: EventModalPage,
         componentProps: {

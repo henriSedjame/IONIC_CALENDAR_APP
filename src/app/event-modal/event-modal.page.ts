@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Evenement} from "../models/event";
-import {ModalController, NavController} from "@ionic/angular";
+import {ModalController, NavController, NavParams} from "@ionic/angular";
 import * as moment from "moment";
 
 @Component({
@@ -10,17 +10,16 @@ import * as moment from "moment";
 })
 export class EventModalPage implements OnInit {
 
-  @Input()selectedDay: any;
   event: Evenement = new Evenement('', new Date().toISOString(), new Date().toISOString(), false );
 
   constructor(private navCtrl: NavController,
-              private modalCtrl: ModalController) {}
+              private modalCtrl: ModalController,
+              private navParams: NavParams) {}
 
   ngOnInit() {
-    let preSelectedDate = moment(this.selectedDay).format();
+    let preSelectedDate = moment(this.navParams.get('selectedDay')).format();
     this.event.startTime = preSelectedDate;
     this.event.endTime = preSelectedDate;
-
   }
 
   save(){
